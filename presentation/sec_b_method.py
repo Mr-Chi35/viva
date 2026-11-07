@@ -112,7 +112,7 @@ def s_acoustic(prs, page):
     chrome(s, "Methodology  \u00b7  \u00a74.1", "The acoustic features are skewed and correlated", page,
            lede="These correlations matter for the SHAP\u2013LIME comparison in Section 4.3.")
 
-    picture(s, f"{ASSETS}/fig2_acoustic_dist_warm.png", ML, 2.10, h=4.28, w=None, caption=None)
+    picture(s, f"{ASSETS}/fig2_acoustic_dists.png", ML, 2.10, h=4.28, w=None, caption=None)
     text(s, ML, 6.44, 6.0, 0.22,
          "Figure 2  \u00b7  Distributions of the nine acoustic features (matched catalogue).",
          size=8.4, color=MUTED, check=False)

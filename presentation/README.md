@@ -16,7 +16,6 @@ presentation/
 ├── verify.py                # geometry audit: off-canvas shapes, text collisions
 ├── preview.py               # rough rasteriser used for visual QA (no LibreOffice here)
 ├── gen_script.py            # exports the speaker notes + beat sheet to Viva_Speaker_Script.md
-├── recolor_figs.py          # re-tones the report figures into the deck palette (hue only)
 ├── charts/                  # generated data charts (regenerable)
 └── assets/                  # template cover + report figures and their re-toned variants
 ```
@@ -27,7 +26,6 @@ presentation/
 python -m venv .venv && .venv/bin/pip install python-pptx pillow matplotlib numpy pymupdf
 cd presentation
 ../.venv/bin/python make_charts.py     # only if the numbers change
-../.venv/bin/python recolor_figs.py    # only if the palette changes
 ../.venv/bin/python build.py           # writes ../Chike_Egonu_Viva_Presentation.pptx
 ../.venv/bin/python verify.py          # layout audit (off-canvas rings on 1, 18, 19 are intentional)
 ../.venv/bin/python preview.py         # renders preview/slide_NN.png for visual QA
@@ -47,11 +45,11 @@ white ground, near-black text, one orange accent, light warm-grey panels.
 | Panels | `#F7F5F2`, `#FBEAE0` | neutral and accent washes |
 | Type | Arial | matches the cover |
 
-Report figures are not left in their original blues: `recolor_figs.py` re-maps each source
-colour (steel blue, tomato, dark orange) onto the same warm palette, recovering the
-anti-aliasing coverage against white so edges stay clean. Geometry, values, labels and
-legends are untouched — only hue changes. In Figure 6 the sign encoding is preserved:
-negative LIME weights stay the dark neutral, positive weights become the accent.
+Figures lifted from the report PDF keep their original colours — they are the genuine
+analysis artefacts and are reproduced as they appear in the report. Only the re-plotted
+charts in `charts/` use the deck palette, so the page furniture is warm and the data
+figures stay authentic. (`fig6_pair_crop.png` and `fig7_crop.png` are the same report
+figures with the redundant in-figure titles cropped; no colour is altered anywhere.)
 
 ## Deck structure
 

@@ -77,7 +77,7 @@ def s_svd(prs, page):
     ], size=10.4, gap=10, tag="svd")
 
     label(s, ML, 4.94, 4.6, "Training loss \u00b7 NCF vs hybrid \u00b7 five epochs")
-    picture(s, f"{ASSETS}/fig4_loss_curves_warm.png", ML, 5.18, w=3.34, frame=True, caption=None)
+    picture(s, f"{ASSETS}/fig4_loss_curves.png", ML, 5.18, w=3.34, frame=True, caption=None)
 
     x3 = 6.95
     shape(s, x3, 4.28, 5.72, 1.92, fill=AMBER_LT, line=None, radius=0.06)
@@ -120,7 +120,7 @@ def s_attributions(prs, page):
     text(s, ML, 4.44, 4.55, 0.40, "Figure 5 \u00b7 global importance ranking, "
          "surrogate model.", size=8.4, color=MUTED, line_spacing=1.12)
 
-    picture(s, f"{ASSETS}/fig6_pair_warm.png", 5.82, 2.20, w=6.85, frame=True)
+    picture(s, f"{ASSETS}/fig6_pair_crop.png", 5.82, 2.20, w=6.85, frame=True)
     text(s, 5.82, 4.24, 6.85, 0.40, "Figure 6 \u00b7 the same instance attributed by both "
          "methods. The top-ranked features do not overlap.", size=8.4, color=MUTED,
          line_spacing=1.12)
@@ -162,7 +162,7 @@ def s_consistency(prs, page):
            lede="Measured across 200 test instances. This is the most consequential result "
                 "so far.")
 
-    picture(s, f"{ASSETS}/fig7_warm_crop.png", ML, 2.20, w=6.20, frame=True)
+    picture(s, f"{ASSETS}/fig7_crop.png", ML, 2.20, w=6.20, frame=True)
     text(s, ML, 5.28, 6.05, 0.44,
          "Figure 7 \u00b7 per-instance Spearman \u03c1 between the SHAP and LIME orderings.",
          size=8.6, color=MUTED, line_spacing=1.15)
