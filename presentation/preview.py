@@ -181,9 +181,10 @@ def render(path, outdir=OUT, only=None):
                         d.rectangle([cx, cy, cx + cw, cy + rh], fill=fc)
                         txt = cell.text_frame.text
                         if txt:
-                            f = font(9.6, False)
+                            head = r == 0
+                            f = font(9.6, head)
                             d.text((cx + 6, cy + rh / 2 - f.size / 2), txt, font=f,
-                                   fill=(60, 65, 96))
+                                   fill=(255, 255, 255) if head else (60, 65, 96))
                         cx += cw
                     cy += rh
                 continue
