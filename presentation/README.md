@@ -16,8 +16,9 @@ presentation/
 ├── verify.py                # geometry audit: off-canvas shapes, text collisions
 ├── preview.py               # rough rasteriser used for visual QA (no LibreOffice here)
 ├── gen_script.py            # exports the speaker notes + beat sheet to Viva_Speaker_Script.md
+├── recolor_figs.py          # re-tones the report figures into the deck palette (hue only)
 ├── charts/                  # generated data charts (regenerable)
-└── assets/                  # figures lifted from the report PDF, plus cropped variants
+└── assets/                  # template cover + report figures and their re-toned variants
 ```
 
 ## Rebuild
@@ -26,17 +27,37 @@ presentation/
 python -m venv .venv && .venv/bin/pip install python-pptx pillow matplotlib numpy pymupdf
 cd presentation
 ../.venv/bin/python make_charts.py     # only if the numbers change
+../.venv/bin/python recolor_figs.py    # only if the palette changes
 ../.venv/bin/python build.py           # writes ../Chike_Egonu_Viva_Presentation.pptx
 ../.venv/bin/python verify.py          # layout audit (off-canvas rings on 1, 18, 19 are intentional)
 ../.venv/bin/python preview.py         # renders preview/slide_NN.png for visual QA
 ../.venv/bin/python gen_script.py      # refresh the printable script + beat sheet
 ```
 
+## Theme
+
+The deck follows the supplied cover artwork (`assets/cover.png`, used full-bleed on slide 1):
+white ground, near-black text, one orange accent, light warm-grey panels.
+
+| Token | Value | Use |
+|---|---|---|
+| Accent | `#D55816` | eyebrow labels, rules, emphasis, proposed model |
+| Ink | `#231F20` | titles, table headers, dark slides |
+| Body / muted | `#4A4340` / `#8B847E` | body copy, captions |
+| Panels | `#F7F5F2`, `#FBEAE0` | neutral and accent washes |
+| Type | Arial | matches the cover |
+
+Report figures are not left in their original blues: `recolor_figs.py` re-maps each source
+colour (steel blue, tomato, dark orange) onto the same warm palette, recovering the
+anti-aliasing coverage against white so edges stay clean. Geometry, values, labels and
+legends are untouched — only hue changes. In Figure 6 the sign encoding is preserved:
+negative LIME weights stay the dark neutral, positive weights become the accent.
+
 ## Deck structure
 
 | Slide | Section | Content | ≈ time |
 |---|---|---|---|
-| 1 | — | Title, presenter, supervisor | 0:30 |
+| 1 | — | Title (template cover artwork) | 0:30 |
 | 2 | §2 | One aim, three objectives, status of each | 0:30 |
 | 3 | §1.1 | Why explanation matters in music recommendation | 0:40 |
 | 4 | §1.3 | Intrinsic vs post-hoc explanation; explanation quality | 0:45 |

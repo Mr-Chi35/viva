@@ -10,37 +10,9 @@ CHARTS = "charts"
 
 def title_slide(prs):
     s = blank(prs)
-    bg_gradient(s, DARK_BG, RGBColor(0x1C, 0x20, 0x4E), 35)
-    rings(s, 11.9, 1.55, [3.4, 4.9, 6.4, 7.9], DARK_RING, 0.9)
-
-    text(s, ML, 0.90, 10.0, 0.26,
-         "MSc dissertation  \u00b7  viva  \u00b7  august 2026",
-         size=9.4, color=TEAL, bold=True, spc=190, caps=True, check=False)
-    rect(s, ML + 0.02, 1.34, 0.86, 0.05, fill=TEAL)
-
-    text(s, ML, 1.74, 10.40, 1.15,
-         "Explainable Music Recommender Systems for Improving User Satisfaction",
-         size=32, color=WHITE, bold=True, line_spacing=1.08, check=False)
-    text(s, ML, 2.96, 8.15, 0.80,
-         "A hybrid neural recommender with post-hoc SHAP and LIME explanations, "
-         "evaluated on the Spotify Million Playlist Dataset.",
-         size=14, color=DARK_TXT, line_spacing=1.35)
-
-    waveform(s, ML, 3.94, 5.6, 0.62,
-             RGBColor(0x35, 0x3A, 0x7C), TEAL,
-             [0.28, 0.52, 0.34, 0.78, 0.46, 0.98, 0.62, 0.4, 0.86, 0.5, 0.3, 0.7,
-              0.44, 0.9, 0.36, 0.6, 0.26, 0.74, 0.42])
-
-    hline(s, ML, 5.40, CW, RGBColor(0x2C, 0x31, 0x66), 1.0)
-
-    metas = [("Presented by", "Chike Egonu"), ("Supervisor", "Aoife Curran"),
-             ("Programme", "MSc dissertation")]
-    x, widths = ML, [3.6, 3.4, 3.6]
-    for (k, v), w in zip(metas, widths):
-        text(s, x, 5.62, w, 0.22, k, size=8.4, color=RGBColor(0x6E, 0x74, 0x9A),
-             bold=True, spc=120, caps=True, check=False)
-        text(s, x, 5.88, w, 0.30, v, size=14, color=WHITE, bold=True, check=False)
-        x += w
+    bg(s, WHITE)
+    # The supplied template cover, placed full-bleed and unstretched.
+    picture(s, f"{ASSETS}/cover.png", 0, 0, w=SLIDE_W, h=SLIDE_H, frame=False)
 
     notes(s, """
 "Good morning. I'm Chike Egonu, supervised by Aoife Curran. My project is an
@@ -74,7 +46,7 @@ def s_aim(prs, page):
         ("Objective 1", "Hybrid recommender, benchmarked",
          "Develop a hybrid model combining NCF with content-based acoustic and metadata "
          "features, benchmarked against established accuracy baselines on the Spotify MPD.",
-         "Implemented", TEAL, TEAL_LT, 1.62),
+         "Implemented", ACCENT, ACCENT_LT, 1.62),
         ("Objective 2", "SHAP and LIME, evaluated",
          "Integrate model-agnostic post-hoc explainers and evaluate their suitability for "
          "the music domain, including agreement between them.",

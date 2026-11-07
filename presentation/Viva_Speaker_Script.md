@@ -35,7 +35,7 @@ Slides 20-22 are backup only. They stay in the file so a question can be answere
 
 ---
 
-## Slide 01 — Explainable Music Recommender Systems for Improving User Satisfaction
+## Slide 01 — Title (template cover)
 
 "Good morning. I'm Chike Egonu, supervised by Aoife Curran. My project is an
 explainable music recommender system, evaluated on the Spotify Million Playlist

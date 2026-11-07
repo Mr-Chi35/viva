@@ -18,15 +18,15 @@ from matplotlib.patches import FancyBboxPatch
 OUT = os.path.join(os.path.dirname(__file__), "charts")
 os.makedirs(OUT, exist_ok=True)
 
-INK = "#12152E"
-BODY = "#3C4160"
-MUTED = "#7C819C"
-GRID = "#E4E6F0"
-ACCENT = "#5B4BE6"
-ACCENT2 = "#16B9B0"
-AMBER = "#F0A23C"
-ROSE = "#E0567F"
-SLATE = "#9AA0BC"
+INK = "#231F20"
+BODY = "#4A4340"
+MUTED = "#8B847E"
+GRID = "#E6E1DB"
+ACCENT = "#D55816"
+ACCENT2 = "#9E3E0D"
+AMBER = "#B8791E"
+ROSE = "#8E3A2C"
+SLATE = "#CFC7BF"
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
@@ -72,7 +72,7 @@ data = {
     "NCF":                 [0.0173, 0.0453, 0.0342, 0.0736],
     "Hybrid\nNCF + Content": [0.0184, 0.0538, 0.0384, 0.0752],
 }
-colors = [SLATE, "#C3C7DA", ACCENT, ACCENT2, AMBER]
+colors = [SLATE, "#E2DCD5", "#3A3330", "#A8998B", ACCENT]
 
 fig, ax = plt.subplots(figsize=(9.6, 4.0))
 x = np.arange(len(metrics))
@@ -107,7 +107,7 @@ rel = [(h / n - 1) * 100 for _, h, n in gains]
 
 fig, ax = plt.subplots(figsize=(7.4, 2.9))
 y = np.arange(len(rel))[::-1]
-bars = ax.barh(y, rel, height=0.52, color=[ACCENT2] * len(rel), edgecolor="none", zorder=3)
+bars = ax.barh(y, rel, height=0.52, color=[ACCENT] * len(rel), edgecolor="none", zorder=3)
 for b, v in zip(bars, rel):
     ax.text(v + 0.45, b.get_y() + b.get_height() / 2, f"+{v:.1f}%",
             va="center", ha="left", fontsize=11, fontweight="bold", color=INK)
@@ -126,7 +126,7 @@ save(fig, "hybrid_gain.png")
 fig, ax = plt.subplots(figsize=(7.0, 2.75))
 names = ["Popularity", "NCF", "Hybrid", "SVD-MF"]
 vals = [0.0239, 0.0342, 0.0384, 0.0769]
-cols = [SLATE, ACCENT2, AMBER, ACCENT]
+cols = ["#CFC7BF", "#A8998B", ACCENT, "#3A3330"]
 bars = ax.bar(names, vals, width=0.5, color=cols, edgecolor="none", zorder=3)
 for b, v in zip(bars, vals):
     ax.text(b.get_x() + b.get_width() / 2, v + 0.0025, f"{v:.4f}",
@@ -154,8 +154,8 @@ imps = [0.04047, 0.02512, 0.02348, 0.01719, 0.01693, 0.01626, 0.01553, 0.01301, 
 
 fig, ax = plt.subplots(figsize=(6.9, 3.5))
 y = np.arange(len(feats))[::-1]
-ramp = ["#4A3FD0", "#5B4BE6", "#6B5BEF", "#7E70F2", "#9186F4",
-        "#A49CF7", "#B7B1F9", "#CAC6FB", "#DDDAFD"]
+ramp = ["#A8490F", "#B8510F", "#C9560F", "#D55816", "#DD6A2C",
+        "#E47E45", "#EA9361", "#F0A87D", "#F6BD9A"]
 bars = ax.barh(y, imps, height=0.62, color=ramp, edgecolor="none", zorder=3)
 for b, v in zip(bars, imps):
     ax.text(v + 0.0009, b.get_y() + b.get_height() / 2, f"{v:.4f}",
@@ -175,7 +175,7 @@ save(fig, "shap_importance.png")
 tr, va, te = 1351773, 191179, 388153
 tot = tr + va + te
 fig, ax = plt.subplots(figsize=(9.0, 1.15))
-segs = [(tr, "Train", "#2E2A7A"), (va, "Validation", "#5B4BE6"), (te, "Test", ACCENT2)]
+segs = [(tr, "Train", "#3A3330"), (va, "Validation", ACCENT), (te, "Test", "#B4A296")]
 left = 0
 for v, lab, c in segs:
     ax.barh(0, v / tot * 100, left=left, height=0.55, color=c, edgecolor="white", lw=1.6)

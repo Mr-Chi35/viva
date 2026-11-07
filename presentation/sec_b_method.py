@@ -55,7 +55,7 @@ def s_preprocess(prs, page):
              spc=40, check=False)
 
     label(s, x2, 4.32, 5.6, "Random 70 / 10 / 20 split")
-    segs = [(1351773, "Train", RGBColor(0x2E, 0x2A, 0x7A)), (191179, "", ACCENT),
+    segs = [(1351773, "Train", RGBColor(0x3A, 0x33, 0x30)), (191179, "", ACCENT),
             (388153, "Test", TEAL)]
     tot = sum(x[0] for x in segs)
     left = 0.0
@@ -66,7 +66,7 @@ def s_preprocess(prs, page):
             text(s, x2 + left, 4.66, w - 0.02, 0.22, lab_txt, size=8.2, color=WHITE,
                  bold=True, align=PP_ALIGN.CENTER, caps=True, spc=60, check=False)
         left += w
-    legend = [("Train", "1,351,773 \u00b7 70%", RGBColor(0x2E, 0x2A, 0x7A)),
+    legend = [("Train", "1,351,773 \u00b7 70%", RGBColor(0x3A, 0x33, 0x30)),
               ("Validation", "191,179 \u00b7 10%", ACCENT), ("Test", "388,153 \u00b7 20%", TEAL)]
     for i, (n, v, col) in enumerate(legend):
         x = x2 + i * 1.96
@@ -112,7 +112,7 @@ def s_acoustic(prs, page):
     chrome(s, "Methodology  \u00b7  \u00a74.1", "The acoustic features are skewed and correlated", page,
            lede="These correlations matter for the SHAP\u2013LIME comparison in Section 4.3.")
 
-    picture(s, f"{ASSETS}/fig2_acoustic_dists.png", ML, 2.10, h=4.28, w=None, caption=None)
+    picture(s, f"{ASSETS}/fig2_acoustic_dist_warm.png", ML, 2.10, h=4.28, w=None, caption=None)
     text(s, ML, 6.44, 6.0, 0.22,
          "Figure 2  \u00b7  Distributions of the nine acoustic features (matched catalogue).",
          size=8.4, color=MUTED, check=False)
@@ -169,18 +169,18 @@ def s_architecture(prs, page):
 
     dbox(s, ML, 2.52, 1.72, 0.60, "Playlist ID", fill=WASH, border=LINE, title_size=10.4)
     dbox(s, ML, 3.30, 1.72, 0.60, "Track ID", fill=WASH, border=LINE, title_size=10.4)
-    dbox(s, ML, 4.62, 1.72, 0.86, "9 acoustic features", "z-scored", fill=TEAL_LT,
-         border=TEAL_LT, title_size=9.8, sub_size=8.2, accent=TEAL)
+    dbox(s, ML, 4.62, 1.72, 0.86, "9 acoustic features", "z-scored", fill=ACCENT_LT,
+         border=ACCENT_LT, title_size=9.8, sub_size=8.2, accent=ACCENT)
 
-    dbox(s, 2.82, 2.52, 2.06, 1.38, "Shared embeddings", "d = 32", fill=WHITE, border=ACCENT,
-         title_size=10.8, sub_size=8.6, accent=ACCENT)
+    dbox(s, 2.82, 2.52, 2.06, 1.38, "Shared embeddings", "d = 32", fill=WHITE, border=LINE,
+         title_size=10.8, sub_size=8.6, accent=INK)
 
     dbox(s, 5.36, 2.36, 2.34, 0.82, "GMF", "element-wise product", fill=WHITE, border=LINE,
          title_size=11, sub_size=8.2)
     dbox(s, 5.36, 3.40, 2.34, 0.82, "MLP", "6 \u2192 32 \u2192 16 \u00b7 ReLU \u00b7 drop 0.3",
          fill=WHITE, border=LINE, title_size=11, sub_size=8.2)
-    dbox(s, 5.36, 4.62, 2.34, 0.86, "Content MLP", "9 \u2192 32 \u2192 16", fill=TEAL_LT,
-         border=TEAL_LT, title_size=10.4, sub_size=8.2, accent=TEAL)
+    dbox(s, 5.36, 4.62, 2.34, 0.86, "Content MLP", "9 \u2192 32 \u2192 16", fill=ACCENT_LT,
+         border=ACCENT_LT, title_size=10.4, sub_size=8.2, accent=ACCENT)
 
     dbox(s, 8.22, 3.30, 1.48, 1.24, "Concat", fill=WASH_2, border=LINE, title_size=10.6)
     dbox(s, 10.20, 3.30, 2.50, 0.72, "Linear layer", fill=WHITE, border=ACCENT, title_size=10.6,
@@ -192,11 +192,11 @@ def s_architecture(prs, page):
     arrow(s, 2.38, 3.60, 2.80, 3.42, MUTED, 1.1)
     arrow(s, 4.90, 2.96, 5.34, 2.82, MUTED, 1.1)
     arrow(s, 4.90, 3.48, 5.34, 3.74, MUTED, 1.1)
-    arrow(s, 2.38, 5.05, 5.34, 5.05, TEAL, 1.1)
+    arrow(s, 2.38, 5.05, 5.34, 5.05, ACCENT, 1.1)
     arrow(s, 7.72, 2.78, 8.20, 3.62, MUTED, 1.1)
     arrow(s, 7.72, 3.82, 8.20, 3.82, MUTED, 1.1)
-    arrow(s, 7.72, 5.05, 8.58, 5.05, TEAL, 1.1, head=False)
-    arrow(s, 8.58, 5.05, 8.58, 4.58, TEAL, 1.1)
+    arrow(s, 7.72, 5.05, 8.58, 5.05, ACCENT, 1.1, head=False)
+    arrow(s, 8.58, 5.05, 8.58, 4.58, ACCENT, 1.1)
     arrow(s, 9.72, 3.92, 10.18, 3.72, MUTED, 1.1)
     arrow(s, 11.45, 4.04, 11.45, 4.20, MUTED, 1.1)
 
@@ -314,8 +314,8 @@ def s_explainers(prs, page):
 
     label(s, ML, 3.36, 5.6, "Explanation formats")
     fmts = [("Feature-ranked text", "Generated from each instance's top SHAP values.",
-             TEAL, "built"),
-            ("Visual attribution", "Top-5 SHAP bar charts and the global summary.", TEAL,
+             ACCENT, "built"),
+            ("Visual attribution", "Top-5 SHAP bar charts and the global summary.", ACCENT,
              "built"),
             ("Knowledge-graph paths", "Artist / genre / label pathways.", MUTED,
              "not attempted")]
@@ -327,18 +327,18 @@ def s_explainers(prs, page):
              check=False)
         text(s, ML + 0.24, y + 0.34, 3.9, 0.28, b, size=8.5, color=BODY, line_spacing=1.12)
         pill(s, ML + 4.42, y + 0.19, 1.22, 0.27, st, fg=c if c != MUTED else MUTED,
-             bg=TEAL_LT if c == TEAL else WASH_2, size=7.6)
+             bg=ACCENT_LT if c == ACCENT else WASH_2, size=7.6)
 
     x2 = ML + 6.23
     shape(s, x2, 3.36, 5.86, 2.48, fill=INK, line=None, radius=0.06)
     text(s, x2 + 0.32, 3.50, 5.2, 0.24, "Why R\u00b2 = 0.105 matters", size=9,
-         color=TEAL, bold=True, spc=120, caps=True, check=False)
+         color=ACCENT, bold=True, spc=120, caps=True, check=False)
     text(s, x2 + 0.32, 3.82, 5.24, 1.90,
          "The surrogate reproduces about 10% of the variance in the hybrid model's score. "
          "So the explanations describe the acoustic part of the model's decision, not the "
          "whole model. That is the main limitation of the results in the next section, and "
          "it is also one of the candidate causes of the SHAP\u2013LIME disagreement.",
-         size=10.4, color=RGBColor(0xD5, 0xD8, 0xE8), line_spacing=1.24)
+         size=10.4, color=DARK_TXT, line_spacing=1.24)
 
     text(s, ML, 6.22, CW, 0.30,
          "Both built formats are grounded in musical features \u2014 instrumentalness, energy, "

@@ -33,7 +33,12 @@ WPS = 2.45          # words per second, i.e. about 147 words a minute
 BACKUP = {20: "References", 21: "Four questions I expect", 22: "Reported numbers"}
 
 
-def biggest_title(slide):
+TITLES = {1: "Title (template cover)"}
+
+
+def biggest_title(slide, idx=None):
+    if idx in TITLES:
+        return TITLES[idx]
     best, size = "", 0
     for sh in slide.shapes:
         if not sh.has_text_frame:
@@ -85,7 +90,7 @@ def main():
               "---",
               ""]
     for i, slide in enumerate(prs.slides, start=1):
-        title = biggest_title(slide)
+        title = biggest_title(slide, i)
         note = ""
         if slide.has_notes_slide:
             note = slide.notes_slide.notes_text_frame.text.strip()

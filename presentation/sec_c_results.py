@@ -77,7 +77,7 @@ def s_svd(prs, page):
     ], size=10.4, gap=10, tag="svd")
 
     label(s, ML, 4.94, 4.6, "Training loss \u00b7 NCF vs hybrid \u00b7 five epochs")
-    picture(s, f"{ASSETS}/fig4_loss_curves.png", ML, 5.18, w=3.34, frame=True, caption=None)
+    picture(s, f"{ASSETS}/fig4_loss_curves_warm.png", ML, 5.18, w=3.34, frame=True, caption=None)
 
     x3 = 6.95
     shape(s, x3, 4.28, 5.72, 1.92, fill=AMBER_LT, line=None, radius=0.06)
@@ -120,7 +120,7 @@ def s_attributions(prs, page):
     text(s, ML, 4.44, 4.55, 0.40, "Figure 5 \u00b7 global importance ranking, "
          "surrogate model.", size=8.4, color=MUTED, line_spacing=1.12)
 
-    picture(s, f"{ASSETS}/fig6_pair_crop.png", 5.82, 2.20, w=6.85, frame=True)
+    picture(s, f"{ASSETS}/fig6_pair_warm.png", 5.82, 2.20, w=6.85, frame=True)
     text(s, 5.82, 4.24, 6.85, 0.40, "Figure 6 \u00b7 the same instance attributed by both "
          "methods. The top-ranked features do not overlap.", size=8.4, color=MUTED,
          line_spacing=1.12)
@@ -162,7 +162,7 @@ def s_consistency(prs, page):
            lede="Measured across 200 test instances. This is the most consequential result "
                 "so far.")
 
-    picture(s, f"{ASSETS}/fig7_crop.png", ML, 2.20, w=6.20, frame=True)
+    picture(s, f"{ASSETS}/fig7_warm_crop.png", ML, 2.20, w=6.20, frame=True)
     text(s, ML, 5.28, 6.05, 0.44,
          "Figure 7 \u00b7 per-instance Spearman \u03c1 between the SHAP and LIME orderings.",
          size=8.6, color=MUTED, line_spacing=1.15)
@@ -225,19 +225,20 @@ def s_limitations(prs, page):
     lims = [("Internal validity", "Training budget",
              "Five epochs, manual hyperparameters, no Optuna search. Every neural result is "
              "provisional until the models converge.",
-             "Next: extend the schedule, then run the scoped 50-trial search.", AMBER),
+             "Next: extend the schedule, then run the scoped 50-trial search.", ACCENT),
             ("Construct validity", "The surrogate is not the model",
              "SHAP and LIME attribute a GBR surrogate with R\u00b2 = 0.105, so the "
              "explanations describe the acoustic view of the score.",
-             "Next: a higher-fidelity surrogate, plus direct explainers where feasible.", ROSE),
+             "Next: a higher-fidelity surrogate, plus direct explainers where feasible.",
+             ACCENT_DK),
             ("External validity", "One catalogue, one sample",
              "150 of 1,000 MPD slices; 55.9% of tracks missing genre; a substituted feature "
              "catalogue rather than the live API.",
-             "Next: full-MPD replication as robustness work.", ACCENT),
+             "Next: full-MPD replication as robustness work.", AMBER),
             ("Conclusion validity", "One split, no users",
              "A single random split and a single run per model. No user study has run, so no "
              "claim about satisfaction is supported.",
-             "Next: multiple seeds and splits, then the user study.", TEAL)]
+             "Next: multiple seeds and splits, then the user study.", INK)]
     pos = [(ML, 2.14), (ML + 6.23, 2.14), (ML, 4.12), (ML + 6.23, 4.12)]
     for (t, sub, b, nxt, c), (x, y) in zip(lims, pos):
         shape(s, x, y, 5.86, 1.82, fill=WHITE, line=LINE, radius=0.06)
@@ -293,8 +294,8 @@ def s_outcomes(prs, page):
              "Not tested \u2014 user study not yet run", "Pending"],
             ["SHAP and LIME behave consistently",
              "\u03c1 = 0.008 across 200 instances", "New finding"]]
-    colors = {1: (TEAL, TEAL_LT), 2: (ROSE, ROSE_LT), 3: (AMBER, AMBER_LT),
-              4: (ACCENT, ACCENT_LT)}
+    colors = {1: (ACCENT, ACCENT_LT), 2: (ROSE, ROSE_LT), 3: (AMBER, AMBER_LT),
+              4: (INK, WASH_2)}
     table(s, ML, 2.14, CW, rows, col_w=[4.60, 5.39, 2.10], row_h=0.62, header_h=0.40,
           font_size=10.0, header_size=8.6, aligns=["l", "l", "c"], rule_color="FFFFFF",
           cell_colors={(i, 2): c[0] for i, c in colors.items()},
@@ -336,7 +337,7 @@ def s_roadmap(prs, page):
 
     items = [("1", "Train to convergence",
               "Extend the schedule until validation NDCG plateaus, then re-run all five "
-              "models.", TEAL),
+              "models.", INK),
              ("2", "Resolve the SHAP\u2013LIME gap",
               "Raise surrogate fidelity; test TreeSHAP with collinearity handling; report "
               "both methods side by side.", AMBER),
@@ -362,12 +363,12 @@ def s_roadmap(prs, page):
 
     x2 = 6.55
     shape(s, x2, 2.14, 6.16, 1.64, fill=INK, line=None, radius=0.06)
-    text(s, x2 + 0.30, 2.26, 5.4, 0.24, "Why the user study is last", size=8.8, color=TEAL,
+    text(s, x2 + 0.30, 2.26, 5.4, 0.24, "Why the user study is last", size=8.8, color=ACCENT,
          bold=True, spc=110, caps=True, check=False)
     text(s, x2 + 0.30, 2.54, 5.56, 1.14,
          "A study that measured trust in an artefact of surrogate fidelity would produce a "
          "result about the surrogate rather than about explanation, and it would be "
-         "expensive to repeat.", size=10.4, color=RGBColor(0xD5, 0xD8, 0xE8),
+         "expensive to repeat.", size=10.4, color=DARK_TXT,
          line_spacing=1.24)
 
     label(s, x2, 4.06, 6.0, "User study \u2014 what it will measure")
@@ -398,9 +399,9 @@ explanation, and that is an expensive mistake to find later."
 
 def s_summary(prs, page):
     s = blank(prs)
-    bg_gradient(s, DARK_BG, RGBColor(0x1C, 0x20, 0x4E), 35)
+    bg_gradient(s, DARK_BG, DARK_BG_2, 35)
     rings(s, 13.9, 7.3, [3.2, 4.6, 6.0], DARK_RING, 0.9)
-    text(s, ML, 0.72, 8.0, 0.26, "Summary", size=9.4, color=TEAL, bold=True, spc=190,
+    text(s, ML, 0.72, 8.0, 0.26, "Summary", size=9.4, color=ACCENT, bold=True, spc=190,
          caps=True, check=False)
     text(s, ML, 1.04, 10.5, 0.62, "Three results and what is still open", size=30,
          color=WHITE, bold=True, check=False)
@@ -417,7 +418,7 @@ def s_summary(prs, page):
                "the result that most affects what the dissertation can claim.")]
     y = 2.06
     for i, (t, b) in enumerate(points):
-        text(s, ML, y - 0.06, 0.60, 0.50, f"0{i+1}", size=17, color=TEAL, bold=True,
+        text(s, ML, y - 0.06, 0.60, 0.50, f"0{i+1}", size=17, color=ACCENT, bold=True,
              check=False)
         text(s, ML + 0.72, y, 10.9, 0.34, t, size=15.5, color=WHITE, bold=True,
              line_spacing=1.1, check=False)
@@ -425,7 +426,7 @@ def s_summary(prs, page):
              line_spacing=1.26)
         y += 1.30
 
-    hline(s, ML, 6.06, CW, RGBColor(0x2C, 0x31, 0x66), 1.0)
+    hline(s, ML, 6.06, CW, DARK_RING, 1.0)
     text(s, ML, 6.16, 8.90, 0.80,
          "Finished: the pipeline, the baselines and the explanation layer. Provisional: the "
          "model ranking and the attribution results. Next: train to convergence, resolve the "
@@ -453,14 +454,14 @@ So: finished, provisional, next."
 
 def s_thanks(prs, page):
     s = blank(prs)
-    bg_gradient(s, DARK_BG, RGBColor(0x1C, 0x20, 0x4E), 35)
+    bg_gradient(s, DARK_BG, DARK_BG_2, 35)
     rings(s, 11.7, 2.4, [3.6, 5.2, 6.8], DARK_RING, 0.9)
 
-    text(s, ML, 1.34, 8.0, 0.28, "End of presentation", size=9.4, color=TEAL, bold=True,
+    text(s, ML, 1.34, 8.0, 0.28, "End of presentation", size=9.4, color=ACCENT, bold=True,
          spc=190, caps=True, check=False)
     text(s, ML, 1.70, 10.60, 0.75, "Thank you \u2014 questions welcome", size=34, color=WHITE,
          bold=True, line_spacing=1.05, check=False)
-    rect(s, ML + 0.02, 2.52, 0.90, 0.05, fill=TEAL)
+    rect(s, ML + 0.02, 2.52, 0.90, 0.05, fill=ACCENT)
 
     text(s, ML, 2.80, 8.6, 0.90,
          "I would particularly welcome questions on the surrogate in Section 4.3, and on "
@@ -472,11 +473,11 @@ def s_thanks(prs, page):
     x = ML
     for v, l in stats:
         text(s, x, 4.18, 2.9, 0.44, v, size=24, color=WHITE, bold=True, check=False)
-        text(s, x, 4.66, 2.9, 0.24, l, size=8.8, color=RGBColor(0x7C, 0x82, 0xAC),
+        text(s, x, 4.66, 2.9, 0.24, l, size=8.8, color=DARK_TXT,
              caps=True, spc=110, check=False)
         x += 2.92
 
-    hline(s, ML, 5.44, CW, RGBColor(0x2C, 0x31, 0x66), 1.0)
+    hline(s, ML, 5.44, CW, DARK_RING, 1.0)
     text(s, ML, 5.64, 6.0, 0.28,
          "Chike Egonu  \u00b7  MSc Dissertation  \u00b7  August 2026",
          size=11.4, color=WHITE, check=False)
@@ -485,7 +486,7 @@ def s_thanks(prs, page):
 
     text(s, 8.30, 5.60, 4.4, 0.62,
          "Backup slides follow: references, four likely questions and the full results table.",
-         size=9.6, color=RGBColor(0x7C, 0x82, 0xAC), line_spacing=1.25)
+         size=9.6, color=DARK_TXT, line_spacing=1.25)
 
     notes(s, """
 Thank you, then stop talking. Do not fill the silence.
